@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from './StyledComponents';
+import { Button } from '../StyledComponents';
 
 const ListItem = styled.li`
   list-style-type: none;

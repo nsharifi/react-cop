@@ -20,6 +20,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "jest": "^25.5.4",
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "sinon": "^9.0.2"
   }
 }

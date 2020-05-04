@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import Todo from './Todo';
+import Todo from './todo/Todo';
 
 const List = styled.ul`
   padding-left: 0;
