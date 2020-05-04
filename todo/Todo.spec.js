@@ -11,7 +11,7 @@ describe('todo', () => {
   });
 
   it('should call delete handler on button click', () => {
-    const onDeleteSpy = spyOn();
+    const onDeleteSpy = sinon.spy();
     const wrapper = shallow(<Todo onDelete={onDeleteSpy} idx={0} />);
     wrapper.find('button').simulate('click');
     sinon.assert.calledOnce(onDeleteSpy);
