@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import NewTodo from "./NewTodo";
 import Todos from "./Todos";
+import styled from 'styled-components';
 import "./style.css";
+
+const Header = styled.h1`
+  background-color: #0a3782;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+`;
 
 class TodoApp extends Component {
   constructor() {
@@ -29,7 +37,7 @@ class TodoApp extends Component {
 
     return (
       <div>
-        <h1>TODO App</h1>
+        <Header>TODO App</Header>
         <NewTodo onAdd={this.handleAddTodo} />
         <Todos todos={todos} onDeleteTodo={this.handleDeleteTodo} />
       </div>
