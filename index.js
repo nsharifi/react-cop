@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import NewTodo from "./NewTodo";
 import Todos from "./Todos";
-import styled from 'styled-components';
+import styled from "styled-components";
+import { getTodos } from "./ApiService";
 import "./style.css";
 
 const Header = styled.h1`
@@ -16,8 +17,16 @@ class TodoApp extends Component {
   constructor() {
     super();
     this.state = {
-      todos: []
+      todos: null
     };
+  }
+
+  componentDidMount() {
+    getTodos().then(todos => {
+      this.setState({
+        todos: todos.slice(0, 10).map(todo => ({ text: todo.title }))
+      });
+    });
   }
 
   handleAddTodo = input => {
