@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../StyledComponents';
 
@@ -15,13 +15,23 @@ const ItemText = styled.span`
   padding: 3px;
   border-radius: 3px;
   margin: 2px 0;
+  text-decoration: ${({done}) => done ? 'line-through': 'inherit'};
+  color: ${({done}) => done ? 'gray': 'inherit'};
 `;
 
-const Todo = ({ todo, idx, onDelete}) => (
-  <ListItem>
-    <ItemText>{todo.text}</ItemText>
-    <Button onClick={() => onDelete(idx)}>X</Button>
-  </ListItem>
-);
+const Todo = ({ todo, idx, onDelete}) => {
+  const [ isDone, setIsDone ] = useState(false);
+
+  const handleTextClick = done => {
+    setIsDone(done);
+  };
+
+  return (
+    <ListItem>
+      <ItemText done={isDone} onClick={() => handleTextClick(!isDone)}>{todo.text}</ItemText>
+      <Button onClick={() => onDelete(idx)}>X</Button>
+    </ListItem>
+  );
+};
 
 export default Todo;

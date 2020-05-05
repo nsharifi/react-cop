@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const Button = styled.button`
   /* Adapt the styles based on primary prop */
-  background: ${props => props.primary ? "#3d90e3" : "white"};
-  color: ${props => props.primary ? "white" : "#b52a2a"};
-
+  background: ${props => props.primary ? '#3d90e3' : 'white'};
+  color: ${props => props.primary ? 'white' : '#b52a2a'};
+  cursor: ${props => props.primary ? 'inherit' : 'pointer'};
   font-size: 1em;
   margin: 2px 5px;
   padding: ${({primary}) => primary ? '0.25em 1.2em' : '0 4px'};
