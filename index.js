@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import styled from 'styled-components';
 import NewTodo from "./NewTodo";
 import Todos from "./Todos";
-import styled from 'styled-components';
 import "./style.css";
 
 const Header = styled.h1`
