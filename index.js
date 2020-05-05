@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom";
 import "./style.css";
 
 class TodoApp extends Component {
@@ -66,4 +66,4 @@ class TodoApp extends Component {
   }
 }
 
-render(<TodoApp />, document.getElementById("root"));
+ReactDOM.render(<TodoApp />, document.getElementById("root"));
