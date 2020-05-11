@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import NewTodo from "./NewTodo";
 import Todos from "./Todos";
 import styled from "styled-components";
-import { getTodos } from "./ApiService";
+import { getTodos, postTodo } from "./ApiService";
 import "./style.css";
 
 const Header = styled.h1`
@@ -13,45 +13,34 @@ const Header = styled.h1`
   border-radius: 3px;
 `;
 
-class TodoApp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      todos: null
-    };
-  }
+const TodoApp = () => {
+  const [todos, setTodos] = useState(null);
 
-  componentDidMount() {
+  useEffect(() => {
     getTodos().then(todos => {
-      this.setState({
-        todos: todos.slice(0, 10).map(todo => ({ text: todo.title }))
-      });
-    });
-  }
+      setTodos(
+        todos.slice(0, 10).map(todo => ({ text: todo.title }))
+      )
+    })
+  }, []);
 
-  handleAddTodo = input => {
-    this.setState({
-      todos: [...this.state.todos, { text: input }]
-    });
-  };
-
-  handleDeleteTodo = idx => {
-    this.setState({
-      todos: this.state.todos.filter((todo, i) => i !== idx)
+  const handleAddTodo = input => {
+    postTodo(input).then(res => {
+      res.id === 201 && setTodos([...(todos || []), { text: input }]);
     });
   };
 
-  render() {
-    const { todos, inputText } = this.state;
+  const handleDeleteTodo = idx => {
+    setTodos(todos.filter((todo, i) => i !== idx));
+  };
 
-    return (
+  return (
       <div>
         <Header>TODO App</Header>
-        <NewTodo onAdd={this.handleAddTodo} />
-        <Todos todos={todos} onDeleteTodo={this.handleDeleteTodo} />
+        <NewTodo onAdd={handleAddTodo} />
+        <Todos todos={todos} onDeleteTodo={handleDeleteTodo} />
       </div>
     );
-  }
 }
 
 render(<TodoApp />, document.getElementById("root"));

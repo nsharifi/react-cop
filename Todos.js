@@ -7,6 +7,10 @@ const List = styled.ul`
   margin-left: 0;
 `;
 
+const Loading = styled.div`
+  margin-top: 5px;
+`;
+
 export default class Todos extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.todos !== this.props.todos) {
@@ -24,7 +28,7 @@ export default class Todos extends Component {
         ))}
       </List>
     ) : (
-      "loading..."
+      <Loading>loading...</Loading>
     );
   }
 }

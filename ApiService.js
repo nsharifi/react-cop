@@ -6,10 +6,15 @@ export const getTodos = () =>
       return [];
     });
 
-export const postTodo = data =>
+export const postTodo = title =>
   fetch("https://jsonplaceholder.typicode.com/todos", {
     method: "POST",
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      title,
+      id: 1,
+      userId: 100,
+      completed: false
+    })
   })
     .then(response => response.json())
     .catch(error => {

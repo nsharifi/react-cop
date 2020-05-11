@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import { Button } from './StyledComponents';
 
@@ -12,33 +12,29 @@ const Input = styled.input`
   font-size: 1.2em;
 `;
 
-export default class NewTodo extends Component {
-  state = {
-    inputText: ''
-  }
+const NewTodo = ({onAdd}) => {
+  const [inputText, setInputText] = useState('');
 
-  handleChange = (event) => {
-    this.setState({inputText: event.target.value });
+  const handleChange = (event) => {
+    setInputText(event.target.value);
     event.preventDefault();
   }
 
-  render() {
-    const { onAdd, onChange } = this.props;
-    const { inputText } = this.state;
-    
-    return (
-      <React.Fragment>
-        <Input
-          type="text"
-          name="inputText"
-          onChange={this.handleChange}
-          value={inputText}
-        />
-        <Button onClick={() => onAdd(inputText)} primary>
-          Add
-        </Button>
+  return (
+    <React.Fragment>
+      <Input
+        type="text"
+        name="inputText"
+        onChange={handleChange}
+        value={inputText}
+      />
+      <Button onClick={() => onAdd(inputText)} primary>
+        Add
+      </Button>
 
-      </React.Fragment>
-    );
-  }
+    </React.Fragment>
+  );
+
 }
+
+export default NewTodo;
